@@ -18,14 +18,19 @@
 #include <tool.h>
 #include <Nfc.h>
 
+/*
+* Ported to ESP-IDF: all file-local symbols made static to avoid
+* linker conflicts when multiple demos are compiled together.
+*/
+
 /* Discovery loop configuration according to the targeted modes of operation */
-unsigned char DiscoveryTechnologies[] = {
+static unsigned char DiscoveryTechnologies[] = {
     MODE_POLL | TECH_PASSIVE_NFCA,
     MODE_POLL | TECH_PASSIVE_NFCB,
     MODE_POLL | TECH_PASSIVE_15693
 };
 
-void PCD_MIFARE_scenario (void)
+static void PCD_MIFARE_scenario (void)
 {
     #define BLK_NB_MFC      4
     #define KEY_MFC         0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF
@@ -85,7 +90,7 @@ void PCD_MIFARE_scenario (void)
     PRINTF(" Read block %d:", Read[2]); PRINT_BUF(" ", (Resp+1), RespSize-2);
 }
 
-void PCD_ISO15693_scenario (void)
+static void PCD_ISO15693_scenario (void)
 {
     #define BLK_NB_ISO15693     8
     #define DATA_WRITE_ISO15693 0x11, 0x22, 0x33, 0x44
@@ -123,7 +128,7 @@ void PCD_ISO15693_scenario (void)
     PRINTF(" Read block %d:", ReadBlock[2]); PRINT_BUF(" ", (Resp+1), RespSize-2);
 }
 
-void PCD_ISO14443_3A_scenario (void)
+static void PCD_ISO14443_3A_scenario (void)
 {
     #define BLK_NB_ISO14443_3A      5
     #define DATA_WRITE_ISO14443_3A  0x11, 0x22, 0x33, 0x44
@@ -163,7 +168,7 @@ void PCD_ISO14443_3A_scenario (void)
     PRINTF(" Read block %d:", Read[1]); PRINT_BUF(" ", Resp, 4);
 }
 
-void PCD_ISO14443_4_scenario (void)
+static void PCD_ISO14443_4_scenario (void)
 {
     bool status;
     unsigned char Resp[256];
@@ -179,7 +184,7 @@ void PCD_ISO14443_4_scenario (void)
     PRINTF(" Select PPSE Application succeed\n");
 }
 
-void displayCardInfo(NxpNci_RfIntf_t RfIntf)
+static void displayCardInfo(NxpNci_RfIntf_t RfIntf)
 {
     switch(RfIntf.Protocol){
     case PROT_T1T:
@@ -226,7 +231,7 @@ void displayCardInfo(NxpNci_RfIntf_t RfIntf)
     }
 }
 
-void nfc_example(void)
+void nfc_example_RW(void)
 {
     NxpNci_RfIntf_t RfInterface;
 

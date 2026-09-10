@@ -12,5 +12,5 @@ idf_component_register(
          "src/tml.c"
          "src/tool.c"
     INCLUDE_DIRS "include"
-    REQUIRES driver esp_driver_gpio esp_driver_i2c freertos
+    REQUIRES driver esp_driver_gpio esp_driver_i2c
 )

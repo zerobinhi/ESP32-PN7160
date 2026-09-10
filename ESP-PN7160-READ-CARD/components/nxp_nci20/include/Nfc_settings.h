@@ -21,7 +21,7 @@
 #define NXP_CORE_STANDBY     1
 #define NXP_CORE_CONF_EXTN   1
 #define NXP_CLK_CONF         1 // 1=Xtal, 2=PLL
-#define NXP_TVDD_CONF        2 // 1=3.3V, 2=4.75V
+#define NXP_TVDD_CONF        1 // 1=3.3V, 2=4.75V
 #define NXP_RF_CONF          1
 
 uint8_t NxpNci_SettingCurrentTS[32] = __TIMESTAMP__;

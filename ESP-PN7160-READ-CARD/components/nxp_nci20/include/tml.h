@@ -12,7 +12,6 @@
 *                          arising from its use.
 */
 
-#include <stdio.h>
 #include <stdint.h>
 
 #define TIMEOUT_INFINITE	0
