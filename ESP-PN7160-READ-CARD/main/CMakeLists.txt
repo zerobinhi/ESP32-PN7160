@@ -6,7 +6,7 @@ idf_component_register(
          "nfc_example_RWandCE.c"
          "ndef_helper.c"
     INCLUDE_DIRS "."
-    REQUIRES nxp_nci20
+    REQUIRES
 )
 
 target_compile_definitions(${COMPONENT_LIB} PRIVATE
